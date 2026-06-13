@@ -1,0 +1,237 @@
+
+/* Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+/* Navbar */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 8%;
+    background-color: rgba(18, 18, 18, 0.95);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid #222;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    color: #ff3366;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: #bbb;
+    text-decoration: none;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+nav ul li a:hover {
+    color: #ff3366;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1542038784456-1ea8e935640e?w=1200') no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 60px;
+}
+
+.hero-content h1 {
+    font-size: 50px;
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+}
+
+.hero-content p {
+    font-size: 18px;
+    color: #ccc;
+    margin-bottom: 25px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: #ff3366;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #e02454;
+    transform: translateY(-2px);
+}
+
+/* Gallery Section */
+.gallery-section {
+    padding: 80px 8%;
+    text-align: center;
+}
+
+.gallery-section h2 {
+    font-size: 36px;
+    margin-bottom: 40px;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 20px;
+}
+
+.gallery-item {
+    overflow: hidden;
+    border-radius: 8px;
+    height: 250px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.5s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+/* About Section */
+.about-section {
+    background-color: #1a1a1a;
+    padding: 80px 8%;
+    text-align: center;
+}
+
+.about-info h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.about-info p {
+    color: #aaa;
+    max-width: 600px;
+    margin: 0 auto 30px auto;
+    line-height: 1.6;
+}
+
+.studio-details p {
+    font-size: 18px;
+    margin: 10px 0;
+    color: #fff;
+}
+
+.studio-details i {
+    color: #ff3366;
+    margin-right: 10px;
+}
+
+.studio-details a {
+    color: #ff3366;
+    text-decoration: none;
+}
+
+/* Contact / Form Section */
+.contact-section {
+    padding: 80px 8%;
+    text-align: center;
+}
+
+.contact-section h2 {
+    margin-bottom: 10px;
+}
+
+.contact-section p {
+    color: #888;
+    margin-bottom: 30px;
+}
+
+#clientForm {
+    max-width: 500px;
+    margin: 0 auto;
+    background: #1a1a1a;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group input, .input-group select {
+    width: 100%;
+    padding: 12px;
+    background: #252525;
+    border: 1px solid #333;
+    color: #fff;
+    border-radius: 5px;
+    outline: none;
+}
+
+.input-group input:focus {
+    border-color: #ff3366;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 12px;
+    background: #ff3366;
+    border: none;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.submit-btn:hover {
+    background: #e02454;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 30px;
+    background: #0d0d0d;
+    color: #666;
+    font-size: 14px;
+    border-top: 1px solid #1a1a1a;
+}
+

@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MG Photography | Capturing Moments</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">MG <span>Photography</span></div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#contact">Book Session</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Capturing Memories, Creating Art</h1>
+            <p>Professional photography services for weddings, portraits, and events.</p>
+            <a href="#gallery" class="btn">View Gallery</a>
+        </div>
+    </section>
+
+    <section id="gallery" class="gallery-section">
+        <h2>Our Masterpieces</h2>
+        <div class="gallery-grid" id="galleryGrid">
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=500" alt="Wedding"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=500" alt="Event"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?w=500" alt="Portrait"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=500" alt="Festival"></div>
+        </div>
+    </section>
+
+    <section id="about" class="about-section">
+        <div class="about-info">
+            <h2>About MG Photography</h2>
+            <p>We believe that every photo tells a unique story. With professional gear and high-end editing, we ensure your special days remain unforgettable.</p>
+            
+            <div class="studio-details">
+                <p><i class="fas fa-map-marker-alt"></i> <strong>Location:</strong> Main Street, Studio City, India</p>
+                <p><i class="fas fa-phone"></i> <strong>Contact:</strong> +91 98765 43210</p>
+                <p><i class="fab fa-instagram"></i> <strong>Instagram:</strong> <a href="https://instagram.com/mg_photography" target="_blank">@mg_photography</a></p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <h2>Book a Session / Register</h2>
+        <p>Apni details bharein, hum aapse jald hi contact karenge!</p>
+        
+        <form id="clientForm">
+            <div class="input-group">
+                <input type="text" id="clientName" placeholder="Your Name" required>
+            </div>
+            <div class="input-group">
+                <input type="email" id="clientEmail" placeholder="Your Email" required>
+            </div>
+            <div class="input-group">
+                <input type="tel" id="clientPhone" placeholder="Your Phone Number" required>
+            </div>
+            <div class="input-group">
+                <select id="serviceType">
+                    <option value="Wedding">Wedding Shoot</option>
+                    <option value="Portrait">Portrait</option>
+                    <option value="Event">Event/Party</option>
+                </select>
+            </div>
+            <button type="submit" class="submit-btn">Submit Details</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 MG Photography. All Rights Reserved.</p>
+    </footer>
+
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
+    
+    <script src="script.js"></script>
+</body>
+</html>
