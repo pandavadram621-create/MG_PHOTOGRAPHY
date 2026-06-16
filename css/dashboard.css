@@ -1,0 +1,433 @@
+
+/* ==========================================================================
+   1. CORE STRUCTURE & RESPONSIVE GRID ARCHITECTURE
+   ========================================================================== */
+.dash-grid-housing {
+    display: flex;
+    flex-direction: column; /* Mobile par automatic stack layout */
+    min-height: 100vh;
+    background-color: #030303;
+}
+
+@media (min-width: 992px) {
+    .dash-grid-housing {
+        flex-direction: row; /* Desktop par side-by-side ho jayega */
+    }
+}
+
+/* ==========================================================================
+   2. ADAPTIVE SIDEBAR NAVIGATION
+   ========================================================================== */
+.dash-sidebar {
+    background: #0a0a0c;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    padding: 25px 20px;
+    width: 100%;
+}
+
+@media (min-width: 992px) {
+    .dash-sidebar {
+        width: 260px;
+        height: 100vh;
+        position: sticky;
+        top: 0;
+        border-bottom: none;
+        border-right: 1px solid rgba(255, 255, 255, 0.04);
+        padding: 35px 25px;
+    }
+}
+
+.sidebar-brand {
+    font-family: 'Syne', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -0.5px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+@media (min-width: 992px) {
+    .sidebar-brand {
+        font-size: 22px;
+        margin-bottom: 35px;
+        text-align: left;
+    }
+}
+
+.sidebar-brand span {
+    background: linear-gradient(135deg, #fff 40%, #818cf8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.sidebar-meta {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: #4b5563;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+@media (min-width: 992px) {
+    .sidebar-meta { text-align: left; }
+}
+
+.sidebar-links {
+    display: flex;
+    flex-wrap: wrap; /* Mobile par tabs jaisa dikhega */
+    justify-content: center;
+    gap: 8px;
+}
+
+@media (min-width: 992px) {
+    .sidebar-links {
+        display: block;
+    }
+}
+
+.sidebar-links a {
+    color: #8e929b;
+    text-decoration: none;
+    padding: 10px 14px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+@media (min-width: 992px) {
+    .sidebar-links a {
+        display: block;
+        padding: 14px 16px;
+        font-size: 13px;
+        margin-bottom: 8px;
+        background: transparent;
+        border: none;
+        border-left: 3px solid transparent;
+    }
+}
+
+.sidebar-links a:hover, .sidebar-links a.active {
+    background: rgba(255, 255, 255, 0.03);
+    color: #fff;
+    border-color: #818cf8;
+}
+
+.sidebar-links a i {
+    margin-right: 8px;
+    font-size: 13px;
+}
+
+.logout-trigger-btn {
+    background: transparent;
+    color: #dc2626;
+    border: 1px solid rgba(220, 38, 32, 0.2);
+    width: 100%;
+    padding: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+/* ==========================================================================
+   3. VIEWPORT HUB & HEADERS
+   ========================================================================== */
+.dash-viewport {
+    flex: 1;
+    padding: 30px 15px;
+    background: #030303;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+@media (min-width: 768px) {
+    .dash-viewport { padding: 40px 5%; }
+}
+
+.dash-internal-header {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    padding-bottom: 25px;
+    margin-bottom: 35px;
+}
+
+@media (min-width: 576px) {
+    .dash-internal-header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+.dash-internal-header h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    text-transform: uppercase;
+}
+
+.admin-profile-badge {
+    background: #0a0a0c;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    padding: 10px 16px;
+    font-size: 11px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    align-self: flex-start;
+}
+
+.online-pulse {
+    width: 8px;
+    height: 8px;
+    background: #059669;
+    border-radius: 50%;
+}
+
+/* ==========================================================================
+   4. METRICS ROW & MATTE CARDS
+   ========================================================================== */
+.stats-matrix-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+}
+
+.stat-matte-card {
+    background: #0a0a0c;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    padding: 25px;
+}
+
+.stat-matte-card p {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #8e929b;
+    margin-bottom: 10px;
+}
+
+.stat-matte-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 24px;
+}
+
+.card-indigo { border-left: 3px solid #4f46e5; }
+.card-emerald { border-left: 3px solid #059669; }
+.card-amber { border-left: 3px solid #d97706; }
+
+/* ==========================================================================
+   5. SOLID MATTE PANEL BOX & RESPONSIVE TABLES
+   ========================================================================== */
+.panel-matte-box {
+    background: #0a0a0c;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    padding: 25px 20px;
+    margin-top: 30px;
+}
+
+.panel-header-row h4 {
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+/* Horizontal Scroll wrapper taaki mobile par table container se bahar na nikle */
+.table-responsive-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px; /* Ensures text formatting spacing */
+}
+
+th {
+    font-size: 10px;
+    text-transform: uppercase;
+    color: #8e929b;
+    padding: 12px 15px;
+    background: rgba(255, 255, 255, 0.01);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+td {
+    padding: 15px;
+    font-size: 13px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.action-btn-hub {
+    display: flex;
+    gap: 8px;
+}
+
+.action-btn-hub button {
+    padding: 6px 12px;
+    font-size: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    background: transparent;
+}
+
+/* ==========================================================================
+   6. NO-CODE DRAG ZONE & STAFF MODULE
+   ========================================================================== */
+.dropzone-area-box {
+    border: 1px dashed rgba(255, 255, 255, 0.1);
+    background: #030303;
+    padding: 30px 15px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.dashboard-gallery-control-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.dash-gallery-thumb-item img {
+    width: 100%;
+    height: 90px;
+    object-fit: cover;
+}
+
+.staff-directory-flex-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+.staff-executive-profile-card {
+    background: #030303;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.staff-executive-profile-card img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+/* ==========================================================================
+   7. CHAT ROOM ENGINE TERMINAL
+   ========================================================================== */
+.internal-chat-mainframe-layout {
+    display: flex;
+    flex-direction: column; /* Mobile first vertical chat orientation */
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    background: #030303;
+    height: 500px;
+}
+
+@media (min-width: 768px) {
+    .internal-chat-mainframe-layout {
+        flex-direction: row;
+        height: 450px;
+    }
+}
+
+.chat-channels-sidebar-list {
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    background: #0a0a0c;
+    padding: 15px;
+    display: flex;
+    overflow-x: auto; /* Channels scroll horizontally on mobile */
+    gap: 10px;
+}
+
+@media (min-width: 768px) {
+    .chat-channels-sidebar-list {
+        width: 220px;
+        border-bottom: none;
+        border-right: 1px solid rgba(255, 255, 255, 0.04);
+        display: block;
+    }
+}
+
+.chat-sidebar-heading-label {
+    display: none; /* Hidden on mobile horizontal panels */
+}
+
+@media (min-width: 768px) {
+    .chat-sidebar-heading-label {
+        display: block;
+        font-size: 10px;
+        color: #4b5563;
+        margin: 15px 0 8px;
+    }
+}
+
+.chat-channel-item {
+    font-size: 12px;
+    color: #8e929b;
+    padding: 8px 12px;
+    white-space: nowrap;
+}
+
+.chat-message-stream-terminal {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: #030303;
+}
+
+.messages-scroll-well {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+}
+
+.msg-bubble-wrap {
+    margin-bottom: 15px;
+    max-width: 85%;
+}
+
+.bubble-content {
+    padding: 10px 14px;
+    font-size: 13px;
+}
+
+.chat-input-row-controller {
+    display: flex;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+    background: #0a0a0c;
+}
+
+.chat-input-row-controller input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: #fff;
+    padding: 14px 15px;
+    font-size: 13px;
+}
+
+.chat-input-row-controller input:focus { outline: none; }
+
+.chat-input-row-controller button {
+    background: transparent;
+    border: none;
+    color: #818cf8;
+    padding: 0 15px;
+}
+
