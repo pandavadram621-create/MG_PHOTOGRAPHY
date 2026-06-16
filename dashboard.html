@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Executive Command Center — Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <script>
+        // STRICT GATEWAY LOCK: Prevents unauthorized direct URL access
+        if (localStorage.getItem('adminSessionActive') !== 'true') {
+            alert("Security Breach Blocked! Session missing. Redirecting to access gate.");
+            window.location.href = 'admin-login.html';
+        }
+    </script>
+</head>
+<body>
+
+    <div class="dash-grid-housing">
+        
+        <aside class="dash-sidebar">
+            <div class="sidebar-brand">The <span>Studio</span></div>
+            <p class="sidebar-meta">OPERATIONS PANEL</p>
+            <nav class="sidebar-links">
+                <a href="#analytics" class="active"><i class="fas fa-chart-pie"></i> Metrics Ledger</a>
+                <a href="#orders"><i class="fas fa-layer-group"></i> Incoming Leases</a>
+                <a href="#gallery"><i class="fas fa-images"></i> Asset Manager</a>
+                <a href="#staff-commander"><i class="fas fa-users-cog"></i> Team Allocation</a>
+                <a href="#chat-engine"><i class="fas fa-comments"></i> Secure Chat Room</a>
+            </nav>
+            <button class="logout-trigger-btn" onclick="terminateSession()"><i class="fas fa-power-off"></i> Terminate Session</button>
+        </aside>
+
+        <main class="dash-viewport">
+            
+            <header class="dash-internal-header">
+                <div>
+                    <h2>Command Center Hub</h2>
+                    <p style="color: #8e929b; font-size: 13px; margin-top: 4px;">Real-time ecosystem auditing framework.</p>
+                </div>
+                <div class="admin-profile-badge">
+                    <div class="online-pulse"></div>
+                    <span>Root Executive Manager</span>
+                </div>
+            </header>
+
+            <section id="analytics" class="dash-section">
+                <div class="stats-matrix-row">
+                    <div class="stat-matte-card card-indigo">
+                        <p>ACTIVE CONTRACTS</p>
+                        <h3>14 <span class="mini-trend">+2</span></h3>
+                    </div>
+                    <div class="stat-matte-card card-emerald">
+                        <p>MONTHLY REVENUE RETENTION</p>
+                        <h3>₹1,85,000</h3>
+                    </div>
+                    <div class="stat-matte-card card-amber">
+                        <p>PENDING OPERATIONS LEAD</p>
+                        <h3>03</h3>
+                    </div>
+                </div>
+
+                <div class="panel-matte-box" style="margin-top: 30px;">
+                    <div class="panel-header-row">
+                        <h4>Financial Retention Metrics</h4>
+                    </div>
+                    <div class="chart-container" style="position: relative; height:250px; width:100%">
+                        <canvas id="revenueChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section id="orders" class="dash-section" style="margin-top: 40px;">
+                <div class="panel-matte-box">
+                    <div class="panel-header-row">
+                        <h4>Incoming Client Reservations</h4>
+                    </div>
+                    <div style="overflow-x: auto;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Client Reference Name</th>
+                                    <th>Target Coordinates</th>
+                                    <th>Schedule Date</th>
+                                    <th>Assigned Package</th>
+                                    <th>Financial State</th>
+                                    <th>Operational Routing</th>
+                                </tr>
+                            </thead>
+                            <tbody id="incomingBookingsTable">
+                                <tr>
+                                    <td><strong>Rahul Sharma</strong><br><small>rahul@example.com</small></td>
+                                    <td>Connaught Place, Delhi</td>
+                                    <td>25-06-2026</td>
+                                    <td>Premium Wedding</td>
+                                    <td><span class="badge badge-confirmed">Token Paid</span></td>
+                                    <td class="action-btn-hub">
+                                        <button class="btn-accept" onclick="alert('Routing execution protocols. Dispatching auto-alerts via WhatsApp/Email to Client.')">Accept</button>
+                                        <button class="btn-reject" onclick="alert('Booking flagged for rejection matrix.')">Reject</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section id="gallery" class="dash-section" style="margin-top: 40px;">
+                <div class="panel-matte-box">
+                    <div class="panel-header-row">
+                        <h4>No-Code Studio Archive Asset Publisher</h4>
+                    </div>
+                    
+                    <div class="dropzone-area-box" id="dropzoneBox" onclick="alert('Intake file dialogue requested.')">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Transmit high-fidelity image components here</p>
+                        <span>Supports RAW, JPEG, PNG formats directly to main repository</span>
+                    </div>
+
+                    <h5 class="sub-panel-title">Active Public Portfolio Thumbnails</h5>
+                    <div class="dashboard-gallery-control-grid" id="dashGalleryGrid">
+                        <div class="dash-gallery-thumb-item">
+                            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=150" alt="Thumb">
+                            <button class="thumb-delete-trigger-btn" onclick="this.parentElement.remove(); alert('Asset permanently purged from public client layer.');">&times;</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="staff-commander" class="dash-section" style="margin-top: 40px;">
+                <div class="panel-matte-box">
+                    <div class="panel-header-row">
+                        <h4>Executive Staff Commander & Deployment Registry</h4>
+                    </div>
+                    
+                    <div class="staff-directory-flex-grid">
+                        
+                        <div class="staff-executive-profile-card" onclick="openStaffCommand('Vikram Rathore', 'Lead Cinematographer', 'vikram@thestudio.com')">
+                            <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=150" alt="Staff Profile">
+                            <div class="staff-profile-details">
+                                <h5>Vikram Rathore</h5>
+                                <p>Lead Cinematographer</p>
+                                <span class="status-marker indicator-busy">BUSY (25-06-2026)</span>
+                            </div>
+                        </div>
+
+                        <div class="staff-executive-profile-card" onclick="openStaffCommand('Ananya Roy', 'Drone Systems Pilot', 'ananya@thestudio.com')">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150" alt="Staff Profile">
+                            <div class="staff-profile-details">
+                                <h5>Ananya Roy</h5>
+                                <p>Drone Systems Pilot</p>
+                                <span class="status-marker indicator-free">FREE</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="staff-command-deployment-form-box" id="staffDeploymentForm">
+                        <h5>Issue Operational Deployment Orders: <span id="targetStaffName" style="color:#818cf8;">Name</span></h5>
+                        <p style="color:#8e929b; font-size:12px; margin-bottom:20px;">Target personnel will receive full client coordinates, schedule configurations, and contact metadata dynamically via systemic high-priority encrypted Email and WhatsApp relays.</p>
+                        <div style="display:flex; gap:20px; flex-wrap:wrap;">
+                            <div style="flex:1; min-width:200px;">
+                                <label style="display:block; font-size:11px; text-transform:uppercase; letter-spacing:1px; color:#8e929b; margin-bottom:8px;">Target Schedule Allocation Date</label>
+                                <input type="date" id="staffAssignDate" style="width:100%; background:#030303; border:1px solid rgba(255,255,255,0.04); color:#fff; padding:12px;">
+                            </div>
+                            <div style="flex:1; min-width:200px;">
+                                <label style="display:block; font-size:11px; text-transform:uppercase; letter-spacing:1px; color:#8e929b; margin-bottom:8px;">Operational Directive</label>
+                                <input type="text" id="staffAssignTask" placeholder="e.g., Handle Booking ID BK-99 Venue Layout" style="width:100%; background:#030303; border:1px solid rgba(255,255,255,0.04); color:#fff; padding:12px;">
+                            </div>
+                        </div>
+                        <button class="execute-command-dispatch-btn" onclick="dispatchStaffOrders()">Commit & Deploy Command Orders</button>
+                    </div>
+
+                </div>
+            </section>
+
+            <section id="chat-engine" class="dash-section" style="margin-top: 40px;">
+                <div class="panel-matte-box">
+                    <div class="panel-header-row">
+                        <h4>Secure Internal Communications Matrix Room</h4>
+                    </div>
+                    
+                    <div class="internal-chat-mainframe-layout">
+                        <div class="chat-channels-sidebar-list">
+                            <p class="chat-sidebar-heading-label">Active Event Channels</p>
+                            <div class="chat-channel-item active-channel"><i class="fas fa-hashtag"></i> Project_BK-99_Group</div>
+                            <p class="chat-sidebar-heading-label" style="margin-top:20px;">Personnel DMs</p>
+                            <div class="chat-channel-item"><div class="badge-dot dot-online"></div> Vikram Rathore</div>
+                            <div class="chat-channel-item"><div class="badge-dot dot-offline"></div> Ananya Roy</div>
+                        </div>
+
+                        <div class="chat-message-stream-terminal">
+                            <div class="messages-scroll-well" id="chatMessageWell">
+                                <div class="msg-bubble-wrap incoming-msg">
+                                    <span class="sender-identity">Vikram Rathore:</span>
+                                    <p class="bubble-content">Executive, high-fidelity lighting rig configurations are deployed at coordinates. Awaiting final sequence timeline checklist.</p>
+                                </div>
+                                <div class="msg-bubble-wrap outgoing-msg">
+                                    <span class="sender-identity">You (Executive):</span>
+                                    <p class="bubble-content">Roger that. Check target timeline in tracking panel ledger. Do not deviate from cinematic protocols.</p>
+                                </div>
+                            </div>
+                            <div class="chat-input-row-controller">
+                                <input type="text" id="chatInputField" placeholder="Transmit direct real-time order instructions...">
+                                <button onclick="transmitChatMessage()"><i class="fas fa-paper-plane"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+        function terminateSession() {
+            localStorage.removeItem('adminSessionActive');
+            alert("Cryptographic Session Destroyed. Securely Exiting System Engine.");
+            window.location.href = 'admin-login.html';
+        }
+
+        // STAFF ASSIGN SLIDER INTERACTION LOGIC
+        let activeStaffEmail = "";
+        function openStaffCommand(name, role, email) {
+            document.getElementById('targetStaffName').innerText = `${name} (${role})`;
+            activeStaffEmail = email;
+            const targetForm = document.getElementById('staffDeploymentForm');
+            targetForm.style.display = 'block';
+            targetForm.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function dispatchStaffOrders() {
+            const date = document.getElementById('staffAssignDate').value;
+            const task = document.getElementById('staffAssignTask').value.trim();
+
+            if(!date || !task) {
+                alert("Operation Aborted! Full date configuration and directives are mandated before deployment.");
+                return;
+            }
+
+            alert(`Execution Successful!\nPersonnel Alerted: ${activeStaffEmail}\nTransmission Route: WhatsApp APIs & Mail Servers\nStatus Lock: Set to Busy on ${date}.`);
+            document.getElementById('staffDeploymentForm').style.display = 'none';
+        }
+
+        // CHAT INTERACTIVE STREAM LOGIC
+        function transmitChatMessage() {
+            const field = document.getElementById('chatInputField');
+            const messageText = field.value.trim();
+            if(!messageText) return;
+
+            const well = document.getElementById('chatMessageWell');
+            const outBubble = document.createElement('div');
+            outBubble.className = 'msg-bubble-wrap outgoing-msg';
+            outBubble.innerHTML = `<span class="sender-identity">You (Executive):</span><p class="bubble-content">${messageText}</p>`;
+            well.appendChild(outBubble);
+            
+            field.value = "";
+            well.scrollTop = well.scrollHeight; // Auto Scroll to latest chat directive
+        }
+
+        // RENDER SHIMMER GRAPH MOCK ENGINE DATA
+        document.addEventListener("DOMContentLoaded", function() {
+            const ctx = document.getElementById('revenueChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Gross Currency Influx (₹)',
+                        data: [90000, 120000, 105000, 140000, 160000, 185000],
+                        borderColor: '#818cf8',
+                        backgroundColor: 'rgba(129, 140, 248, 0.05)',
+                        borderWidth: 2,
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: { grid: { display: false }, ticks: { color: '#8e929b' } },
+                        y: { grid: { color: 'rgba(255,255,255,0.02)' }, ticks: { color: '#8e929b' } }
+                    }
+                }
+            });
+        });
+    </script>
+    <script src="js/admin.js"></script>
+</body>
+</html>
