@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manager Access — The Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .login-wrapper {
+            max-width: 450px;
+            margin: 80px auto;
+            padding: 0 20px;
+        }
+        .login-card {
+            background: #0a0a0c;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            padding: 45px;
+        }
+        .form-group {
+            margin-bottom: 25px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #8e929b;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        .form-group input {
+            width: 100%;
+            background: #030303;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            color: #fff;
+            padding: 14px 18px;
+            font-size: 15px;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+        .login-btn {
+            background: #fff;
+            color: #000;
+            border: 1px solid #fff;
+            width: 100%;
+            padding: 16px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+        }
+        .login-btn:hover {
+            background: transparent;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">The <span>Studio</span></div>
+        <nav>
+            <a href="index.html">Identity</a>
+            <a href="booking.html">Reserve Slot</a>
+            <a href="track.html">Track Order</a>
+            <a href="client-gallery.html">Private Vault</a>
+            <a href="admin-login.html" class="active admin-btn">Manager Access</a>
+        </nav>
+    </header>
+
+    <div class="login-wrapper">
+        <div class="login-card">
+            <div style="text-align: center; margin-bottom: 35px;">
+                <i class="fas fa-shield-alt" style="font-size: 32px; color: #818cf8; margin-bottom: 15px;"></i>
+                <h2 style="font-family: 'Syne', sans-serif; font-size: 22px; text-transform: uppercase; letter-spacing: 0.5px;">Command Gateway</h2>
+                <p style="color: #8e929b; font-size: 13px; margin-top: 5px;">Restricted zone. Authentication required.</p>
+            </div>
+            
+            <form id="adminLoginForm" onsubmit="event.preventDefault(); triggerAdminAuth();">
+                <div class="form-group">
+                    <label>Manager Account Name</label>
+                    <input type="text" id="adminUser" placeholder="Username (Use 'admin')" required>
+                </div>
+                <div class="form-group">
+                    <label>Cryptographic Password</label>
+                    <input type="password" id="adminPass" placeholder="Password (Use 'admin123')" required>
+                </div>
+                <button type="submit" class="login-btn">Authenticate Signature</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+        function triggerAdminAuth() {
+            const user = document.getElementById('adminUser').value.trim();
+            const pass = document.getElementById('adminPass').value;
+
+            if(user === 'admin' && pass === 'admin123') {
+                localStorage.setItem('adminSessionActive', 'true');
+                alert("Identity Authenticated! Opening Secure Command Dashboard.");
+                window.location.href = 'dashboard.html';
+            } else {
+                alert("Access Revoked! Demo credentials are 'admin' & 'admin123'.");
+            }
+        }
+    </script>
+</body>
+</html>

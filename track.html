@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Your Order — The Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+  
+    <style>
+        .track-wrapper {
+            max-width: 600px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+        .track-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 32px;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .search-card {
+            background: #0a0a0c;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            padding: 35px;
+            margin-bottom: 30px;
+        }
+        .search-box {
+            display: flex;
+            gap: 15px;
+        }
+        .search-box input {
+            flex: 1;
+            background: #030303;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            color: #fff;
+            padding: 14px 18px;
+            font-size: 15px;
+        }
+        .search-box input:focus {
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+        .search-box button {
+            background: #fff;
+            color: #000;
+            border: 1px solid #fff;
+            padding: 0 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+        .search-box button:hover {
+            background: transparent;
+            color: #fff;
+        }
+        .status-result {
+            display: none; /* Controlled dynamically via tracking logic */
+            background: #0a0a0c;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            padding: 40px;
+        }
+        .status-result h3 {
+            font-family: 'Syne', sans-serif;
+            text-transform: uppercase;
+            font-size: 18px;
+            margin-bottom: 25px;
+            letter-spacing: 0.5px;
+        }
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            font-size: 14px;
+        }
+        .detail-row strong {
+            color: #8e929b;
+            font-weight: 400;
+        }
+        .badge {
+            padding: 4px 12px;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .badge-pending { 
+            background: rgba(217, 119, 6, 0.1); 
+            color: #d97706; 
+            border: 1px solid rgba(217, 119, 6, 0.2); 
+        }
+        .badge-confirmed { 
+            background: rgba(5, 150, 105, 0.1); 
+            color: #059669; 
+            border: 1px solid rgba(5, 150, 105, 0.2); 
+        }
+        .badge-cancelled { 
+            background: rgba(220, 38, 32, 0.1); 
+            color: #dc2626; 
+            border: 1px solid rgba(220, 38, 32, 0.2); 
+        }
+        .cancel-trigger {
+            background: transparent;
+            color: #dc2626;
+            border: 1px solid rgba(220, 38, 32, 0.3);
+            width: 100%;
+            padding: 14px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-top: 30px;
+            cursor: pointer;
+        }
+        .cancel-trigger:hover {
+            background: #dc2626;
+            color: #fff;
+            border-color: #dc2626;
+        }
+        .cancel-gate {
+            display: none;
+            margin-top: 25px;
+            background: #030303;
+            border: 1px dashed rgba(220, 38, 32, 0.3);
+            padding: 25px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">The <span>Studio</span></div>
+        <nav>
+            <a href="index.html">Identity</a>
+            <a href="booking.html">Reserve Slot</a>
+            <a href="track.html" class="active">Track Order</a>
+            <a href="client-gallery.html">Private Vault</a>
+            <a href="admin-login.html" class="admin-btn">Manager Access</a>
+        </nav>
+    </header>
+
+    <div class="track-wrapper">
+        <h2 class="track-title">Order Ledger Tracking</h2>
+        
+        <div class="search-card">
+            <div class="search-box">
+                <input type="text" id="bookingIdInput" placeholder="Enter Reference Booking ID (e.g., BK-99)" required>
+                <button onclick="trackOrder()">Audit</button>
+            </div>
+        </div>
+
+        <div class="status-result" id="resultBox">
+            <h3>Reservation Profile</h3>
+            
+            <div class="detail-row">
+                <strong>Client Identity</strong>
+                <span id="resName">-</span>
+            </div>
+            <div class="detail-row">
+                <strong>Deployment Date</strong>
+                <span id="resDate">-</span>
+            </div>
+            <div class="detail-row">
+                <strong>Target Coordinates</strong>
+                <span id="resLocation">-</span>
+            </div>
+            <div class="detail-row" style="border-bottom: none; align-items: center;">
+                <strong>Ledger Status</strong>
+                <span class="badge badge-pending" id="resStatus">-</span>
+            </div>
+            
+            <button class="cancel-trigger" id="cancelRequestBtn" onclick="showCancelOTP()">Revoke Reservation</button>
+            
+            <div class="cancel-gate" id="cancelOtpSection">
+                <div class="form-group" style="margin-bottom: 0;">
+                    <label style="color: #dc2626; display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;">Security Revocation Code (Use '4321')</label>
+                    <input type="text" id="cancelOtpInput" placeholder="Enter 4-Digit Code" maxlength="4" style="width: 100%; background: #000; border: 1px solid rgba(255,255,255,0.04); color: #fff; padding: 12px; margin-bottom: 15px; text-align: center; letter-spacing: 6px; font-size: 16px;">
+                    <button type="button" class="submit-btn" style="padding: 12px; font-size: 11px; background: #dc2626; border-color: #dc2626; color: #fff; width: 100%; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; cursor: pointer;" onclick="confirmCancellation()">Confirm Permanent Deletion</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
